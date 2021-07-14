@@ -9,7 +9,7 @@ using AutomaticDataGeneration.Darknet.Model;
 
 namespace AutomaticDataGeneration.Darknet
 {
-    internal class YoloDarknet : NeuralNetDetector, IDarknet
+    public class YoloDarknet : NeuralNetDetector, IDarknet
     {
         private readonly YoloWrapper _darknet;
         private readonly GpuConfig _gpuConfig;

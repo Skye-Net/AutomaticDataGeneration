@@ -1,39 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using AutomaticDataGeneration.Config;
 using AutomaticDataGeneration.Darknet;
-using AutomaticDataGeneration.Darknet.Model;
+using AutomaticDataGeneration.Extensions;
 using Emgu.CV;
-using Emgu.CV.CvEnum;
 using Emgu.CV.Structure;
 using Microsoft.Extensions.Logging;
 
 namespace AutomaticDataGeneration.DataGenerators
 {
-    internal class VideoDataGenerator : AutomaticDataGenerator
+    public class ImageDataGenerator : AutomaticDataGenerator
     {
-        public VideoDataGenerator(string videoFilePath, string outputFolder, Configuration config, ILogger logger) : base(videoFilePath, outputFolder, config, logger) { }
+        private readonly string[] _extensions = new[] {"jpg","jpeg", "png", "bmp"};
+        public ImageDataGenerator(string inputFolder, string outputFolder, Configuration config, ILogger logger) : base(inputFolder, outputFolder, config, logger) { }
 
         public override void GenerateData()
         {
-            using var video = new VideoCapture(InputFilePath);
-            using var img = new Mat();
-
-            // Extract video metadata
-            var totalFrames = (int) Math.Floor(video.Get(CapProp.FrameCount));
-            var frameHeight = video.Get(CapProp.FrameHeight);
-            var frameWidth = video.Get(CapProp.FrameWidth);
-
-            var currFrameCount = 1;
-
-            while (video.Grab())
+            var files = FileExtensions.FilterFiles(InputFilePath, _extensions).ToList();
+            var totalFrames = files.Count();
+            var currFrameCount = 0;
+            foreach (var imagePath in files)
             {
-                // Get data from video buffer
-                video.Retrieve(img);
-
+                using var img = new Mat(imagePath);
+                var frameHeight = img.Height;
+                var frameWidth = img.Width;
                 // Transform into valid data for Yolo
                 var imgData = img.ToImage<Bgr, byte>().ToJpegData(100);
 
@@ -57,6 +46,7 @@ namespace AutomaticDataGeneration.DataGenerators
                 
                 currFrameCount += 1;
             }
+
         }
     }
 }

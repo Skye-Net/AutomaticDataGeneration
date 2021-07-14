@@ -4,12 +4,6 @@ namespace AutomaticDataGeneration.Config
 {
     public class Configuration
     {
-        public DarknetConfig DarknetConfig { get; set; }
-        public PreviewConfig PreviewConfig { get; set; }
-        public bool EnableVerboseLogging { get; set; }
-        public bool SaveInvalidData { get; set; }
-        public double MinimumConfidence { get; set; }
-        
         public Configuration(bool enableVerboseLogging, bool saveInvalidData, double minimumConfidence, string configPath, string weightPath, string namesPath, bool enablePreview, bool showAnnotations, bool showConfidence)
         {
             EnableVerboseLogging = enableVerboseLogging;
@@ -27,5 +21,11 @@ namespace AutomaticDataGeneration.Config
             SaveInvalidData = saveInvalidData;
             MinimumConfidence = minimumConfidence;
         }
+
+        public DarknetConfig DarknetConfig { get; set; }
+        public PreviewConfig PreviewConfig { get; set; }
+        public bool EnableVerboseLogging { get; set; }
+        public bool SaveInvalidData { get; set; }
+        public double MinimumConfidence { get; set; }
     }
 }
