@@ -49,7 +49,7 @@ namespace AutomaticDataGeneration
                 throw new ArgumentNullException(nameof(logger));
             }
 
-            var videoDataGenerator = new VideoDataGenerator(videoFilePath, outputFolder, Config, logger);
+            using var videoDataGenerator = new VideoDataGenerator(videoFilePath, outputFolder, Config, logger);
             videoDataGenerator.GenerateData();
         }
 
@@ -96,7 +96,7 @@ namespace AutomaticDataGeneration
                 }
             }
 
-            var imageDataGenerator = new ImageDataGenerator(inputFolder, outputFolder, Config, logger);
+            using var imageDataGenerator = new ImageDataGenerator(inputFolder, outputFolder, Config, logger);
             imageDataGenerator.GenerateData();
         }
     }

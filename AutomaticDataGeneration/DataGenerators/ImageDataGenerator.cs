@@ -31,7 +31,8 @@ namespace AutomaticDataGeneration.DataGenerators
                 var sortedDetections = detection.Where(x => x.Confidence >= Configuration.MinimumConfidence).ToList();
 
                 // Create data
-                CreateAnnotationFiles(sortedDetections, detection, currFrameCount, frameWidth, frameHeight, img);
+                CreateAnnotationFiles(sortedDetections, detection, currFrameCount, frameWidth, frameHeight, img, imagePath);
+
                 
                 // Render preview for user
                 if (Configuration.PreviewConfig.EnablePreview)

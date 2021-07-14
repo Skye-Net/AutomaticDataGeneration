@@ -15,8 +15,8 @@ namespace AutomaticDataGeneration.Darknet.Alturos.Yolo
     internal class YoloWrapper : IDisposable
     {
         public const int MaxObjects = 1000;
-        private const string YoloLibraryCpu = "yolo_cpp_dll_cpu";
-        private const string YoloLibraryGpu = "yolo_cpp_dll_gpu";
+        private const string YoloLibraryCpu = @"Dependencies\yolo_cpp_dll_cpu";
+        private const string YoloLibraryGpu = @"Dependencies\yolo_cpp_dll_gpu";
 
         private readonly ImageAnalyzer _imageAnalyzer = new();
         private readonly IYoloSystemValidator _yoloSystemValidator;

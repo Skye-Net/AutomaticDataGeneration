@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticDataGeneration", "AutomaticDataGeneration\AutomaticDataGeneration.csproj", "{07718BEB-1268-4430-B4BF-B894722018B9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticDataGeneration.Test", "AutomaticDataGeneration.Test\AutomaticDataGeneration.Test.csproj", "{FA441653-5EF1-4CE7-B6BE-BE2F68F9D6D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{07718BEB-1268-4430-B4BF-B894722018B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07718BEB-1268-4430-B4BF-B894722018B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07718BEB-1268-4430-B4BF-B894722018B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA441653-5EF1-4CE7-B6BE-BE2F68F9D6D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA441653-5EF1-4CE7-B6BE-BE2F68F9D6D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA441653-5EF1-4CE7-B6BE-BE2F68F9D6D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA441653-5EF1-4CE7-B6BE-BE2F68F9D6D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

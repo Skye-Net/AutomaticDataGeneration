@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AutomaticDataGeneration.DataGenerators
 {
-    public abstract class AutomaticDataGenerator
+    public abstract class AutomaticDataGenerator : IDisposable
     {
         protected YoloDarknet _detector;
         protected string InputFilePath { get; }
@@ -53,8 +53,7 @@ namespace AutomaticDataGeneration.DataGenerators
             CvInvoke.Imshow("Current data", img);
             CvInvoke.WaitKey(1);
         }
-
-        protected void CreateAnnotationFiles(List<Detection> sortedDetections, List<Detection> detection, int currFrameCount, double frameWidth, double frameHeight, Mat img)
+        protected void CreateAnnotationFiles(List<Detection> sortedDetections, List<Detection> detection, int currFrameCount, double frameWidth, double frameHeight, Mat img, string fileName = null) 
         {
             if ((sortedDetections.Count > 0) || (Configuration.SaveInvalidData && (detection.Count == 0)))
             {
@@ -74,10 +73,23 @@ namespace AutomaticDataGeneration.DataGenerators
                 if (!string.IsNullOrWhiteSpace(fileText) || (Configuration.SaveInvalidData && (detection.Count == 0)))
                 {
                     var textName = $"{currFrameCount}_{filenameTick}.txt";
-                    img.Save(Path.Combine(OutputFolder ?? InputFilePath, baseFileName));
-                    File.WriteAllText(Path.Combine(OutputFolder ?? InputFilePath, textName), fileText);
+                    if (string.IsNullOrEmpty(fileName))
+                    {
+                        img.Save(Path.Combine(OutputFolder ?? InputFilePath, baseFileName));
+                        File.WriteAllText(Path.Combine(OutputFolder ?? InputFilePath, textName), fileText);
+                    }
+                    else
+                    {
+                        var txtFileNameAndPath = Path.ChangeExtension(fileName, "txt");
+                        File.WriteAllText(txtFileNameAndPath, fileText);
+                    }
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            _detector?.Dispose();
         }
     }
 }

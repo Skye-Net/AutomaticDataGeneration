@@ -28,8 +28,8 @@ namespace AutomaticDataGeneration.Darknet.Alturos.Yolo
 
             report.MicrosoftVisualCPlusPlusRedistributableExists = IsMicrosoftVisualCPlusPlus2017Available();
 
-            if (File.Exists(Path.Combine(AppContext.BaseDirectory, "cudnn64_7.dll")) ||
-                File.Exists(Path.Combine(AppContext.BaseDirectory, "cudnn64_8.dll")))
+            if (File.Exists(Path.Combine(AppContext.BaseDirectory, "Dependencies", "cudnn64_7.dll")) ||
+                File.Exists(Path.Combine(AppContext.BaseDirectory, "Dependencies", "cudnn64_8.dll")))
             {
                 report.CudnnExists = true;
             }
